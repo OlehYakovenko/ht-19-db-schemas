@@ -48,7 +48,7 @@ create table if not exists phone_numbers
     id           bigserial,
     phone_number text                        not null,
     type         advisory.phone_numbers_type not null,
-    applicant_id bigserial,
+    applicant_id bigint,
     constraint phone_numbers_pk primary key (id),
     constraint phone_numbers_applicant_fk foreign key (applicant_id) references applicants
 );
@@ -60,8 +60,8 @@ create table if not exists applications
     status       advisory.application_status not null,
     created_at   timestamp                   not null default now(),
     assigned_at  timestamp                   not null,
-    advisor_id   bigserial,
-    applicant_id bigserial,
+    advisor_id   bigint,
+    applicant_id bigint,
     constraint applicants_pk primary key (id),
     constraint applicants_advisors_fk foreign key (advisor_id) references advisors,
     constraint applicants_applicants_fk foreign key (applicant_id) references applicants
